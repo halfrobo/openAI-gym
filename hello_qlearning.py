@@ -43,7 +43,7 @@ env = gym.make('CartPole-v0')
 q_table = np.zeros((6,2))
 
 
-epsilon = 0.01
+epsilon = 0.010
 alpha = 0.1
 gamma = 0.9
 
