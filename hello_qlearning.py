@@ -43,6 +43,8 @@ env = gym.make('CartPole-v0')
 q_table = np.zeros((6,2))
 
 
+num_streaks = 0
+best_streak = 0
 epsilon = 0.010
 alpha = 0.1
 gamma = 0.9
@@ -70,9 +72,18 @@ for episode in range(10000):
 		curr_state = state1
 
 		if done:
-			break
+			print("Episode %d finished after %f time steps" % (episode, n_iter))
+			if(n_iter >= 199):
+				num_streaks += 1
+				if(num_streaks>=best_streak):
+					best_streak = num_streaks
+			else:
+				num_streaks = 0
+		break
 
-
+	if num_streaks > 110:
+		print("Hurrah we made it !")
+		break	
 
 env.monitor.close()
 
